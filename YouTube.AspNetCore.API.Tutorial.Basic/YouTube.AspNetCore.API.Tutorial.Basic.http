@@ -1,0 +1,6 @@
+@YouTube.AspNetCore.API.Tutorial.Basic_HostAddress = http://localhost:5280
+
+GET {{YouTube.AspNetCore.API.Tutorial.Basic_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
