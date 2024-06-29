@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using YouTube.AspNetCore.API.Tutorial.Basic.Context;
 using YouTube.AspNetCore.API.Tutorial.Basic.GenericRepositories;
+using YouTube.AspNetCore.API.Tutorial.Basic.MapperApp;
 using YouTube.AspNetCore.API.Tutorial.Basic.Services.ClientServices;
 using YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceItemServices;
 using YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceServices;
@@ -17,6 +18,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Extensions
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IInvoiceItemService, InvoiceItemService>();
             services.AddScoped<IInvoiceService, InvoiceService>();
+            services.AddScoped<IMapper, Mapper>();
 
             return services;
         }

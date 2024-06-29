@@ -27,7 +27,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.MapperApp
 
         private object MapObject(Type sourceType, object source, object? outcome, Type destinationType, int depth, string? previousProcess)
         {
-            if (source is null) throw new Exception("Mapper source can not be null");
+            if (source is null) return null;
             if (depth <= 0) return null;
             if (previousProcess is Collection) depth++;
 
