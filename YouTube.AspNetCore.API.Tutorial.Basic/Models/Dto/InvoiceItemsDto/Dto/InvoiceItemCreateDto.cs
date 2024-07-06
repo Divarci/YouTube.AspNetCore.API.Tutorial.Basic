@@ -1,7 +1,11 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Validations;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
 
-namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto
+namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Dto
 {
+    [ModelMetadataType(typeof(BaseInvoiceItemValidation))]
     public class InvoiceItemCreateDto
     {
         public string Name { get; set; }

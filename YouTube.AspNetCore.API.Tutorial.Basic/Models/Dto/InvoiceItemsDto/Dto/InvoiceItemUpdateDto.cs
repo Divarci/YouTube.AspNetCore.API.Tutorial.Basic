@@ -1,7 +1,11 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Validations;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
 
-namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto
+namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Dto
 {
+    [ModelMetadataType(typeof(InvoiceItemIUpdateValidation))]
     public class InvoiceItemUpdateDto
     {
         public int Id { get; set; }
@@ -11,6 +15,6 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto
         public decimal Vat { get => Total * 0.2m; private set { } }
         public decimal Total { get => Price * Quantity; private set { } }
         public decimal GrandTotal { get => Total + Vat; private set { } }
-      
+
     }
 }

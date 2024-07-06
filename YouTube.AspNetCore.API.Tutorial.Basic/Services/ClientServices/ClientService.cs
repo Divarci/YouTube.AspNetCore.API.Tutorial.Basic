@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using YouTube.AspNetCore.API.Tutorial.Basic.GenericRepositories;
 using YouTube.AspNetCore.API.Tutorial.Basic.MapperApp;
-using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto.Dto;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Others;
 

@@ -1,8 +1,12 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Dto;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto.Validations;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
 
-namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto
+namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto.Dto
 {
+    [ModelMetadataType(typeof(InvoiceCreateValidation))]
     public class InvoiceCreateDto
     {
         public DateTime InvoiceDate { get; set; }
@@ -12,7 +16,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto
         public decimal GrandTotal { get => InvoiceItems.Sum(x => x.GrandTotal); private set { } }
         public int ClientId { get; set; }
 
-        public  List<InvoiceItemCreateDto> InvoiceItems { get; set; }
+        public List<InvoiceItemCreateDto> InvoiceItems { get; set; }
 
     }
 }

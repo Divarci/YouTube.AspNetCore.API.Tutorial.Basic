@@ -1,7 +1,11 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Dto;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto.Validations;
 
-namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto
+namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto.Dto
 {
+    [ModelMetadataType(typeof(InvoiceUpdateForUpdateItemsValidation))]
     public class InvoiceUpdateForAddItemsDto
     {
         public int Id { get; set; }

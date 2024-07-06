@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using YouTube.AspNetCore.API.Tutorial.Basic.Context;
 using YouTube.AspNetCore.API.Tutorial.Basic.GenericRepositories;
 using YouTube.AspNetCore.API.Tutorial.Basic.MapperApp;
@@ -17,6 +18,11 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Extensions
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IInvoiceService, InvoiceService>();
             services.AddScoped<IMapper, Mapper>();
+
+            services.Configure<ApiBehaviorOptions>(opt =>
+            {
+                opt.SuppressModelStateInvalidFilter = true;
+            });
 
             return services;
         }

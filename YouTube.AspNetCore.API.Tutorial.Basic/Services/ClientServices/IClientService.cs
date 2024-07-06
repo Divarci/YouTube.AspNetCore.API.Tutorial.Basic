@@ -1,4 +1,4 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto;
+﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto.Dto;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Others;
 
 namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.ClientServices

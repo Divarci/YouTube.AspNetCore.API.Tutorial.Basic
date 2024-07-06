@@ -1,5 +1,5 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto;
-using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto;
+﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Dto;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto.Dto;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Others;
 
 namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceServices

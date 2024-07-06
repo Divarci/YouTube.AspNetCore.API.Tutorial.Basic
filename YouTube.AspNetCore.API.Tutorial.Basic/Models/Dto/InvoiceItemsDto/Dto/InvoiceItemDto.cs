@@ -1,6 +1,6 @@
 ﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
 
-namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto
+namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Dto
 {
     public class InvoiceItemDto
     {

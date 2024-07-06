@@ -1,10 +1,14 @@
 using YouTube.AspNetCore.API.Tutorial.Basic.Extensions;
+using YouTube.AspNetCore.API.Tutorial.Basic.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(opt=>
+{
+    opt.Filters.Add(new ValidationFilterAttribute());
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

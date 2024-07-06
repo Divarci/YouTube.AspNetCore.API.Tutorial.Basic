@@ -1,7 +1,7 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto;
+﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto.Dto;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
 
-namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto
+namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto.Dto
 {
     public class ClientDto
     {

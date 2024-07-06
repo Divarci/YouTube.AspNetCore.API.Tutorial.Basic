@@ -1,4 +1,4 @@
-﻿namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto
+﻿namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto.Dto
 {
     public class ClientDtoForInvoice
     {
