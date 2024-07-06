@@ -8,9 +8,9 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public decimal Vat { get; set; }
-        public decimal Total { get; set; }
-        public decimal GrandTotal { get; set; }
-        public int InvoiceId { get; set; }
+        public decimal Vat { get => Total * 0.2m; private set { } }
+        public decimal Total { get => Price * Quantity; private set { } }
+        public decimal GrandTotal { get => Total + Vat; private set { } }
+      
     }
 }

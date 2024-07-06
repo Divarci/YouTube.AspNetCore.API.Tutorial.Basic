@@ -1,10 +1,10 @@
 ﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto;
-using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
 
 namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto
 {
-    public class InvoiceCreateDto
+    public class InvoiceUpdateForAddItemsDto
     {
+        public int Id { get; set; }
         public DateTime InvoiceDate { get; set; }
         public string PONumber { get; set; }
         public decimal Vat { get => InvoiceItems.Sum(x => x.Vat); private set { } }
@@ -12,7 +12,8 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto
         public decimal GrandTotal { get => InvoiceItems.Sum(x => x.GrandTotal); private set { } }
         public int ClientId { get; set; }
 
-        public  List<InvoiceItemCreateDto> InvoiceItems { get; set; }
+        public List<InvoiceItemCreateDto> InvoiceItems { get; set; }
+
 
     }
 }

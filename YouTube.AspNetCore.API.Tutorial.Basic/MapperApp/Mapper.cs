@@ -56,7 +56,12 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.MapperApp
                 {
                     var nestedValue = sourceProperty.GetValue(source);
                     depth--;
-                    var subDestination = MapObject(sourceProperty.PropertyType, nestedValue, outcome, destinationProperty.PropertyType, depth, SingleUnit);
+                    var nestedOutcome = outcome;
+                    if (nestedValue is ICollection)
+                    {
+                        nestedOutcome = null;
+                    }
+                    var subDestination = MapObject(sourceProperty.PropertyType, nestedValue, nestedOutcome, destinationProperty.PropertyType, depth, SingleUnit);
                     depth++;
                     destinationProperty.SetValue(destination, subDestination);
                     continue;

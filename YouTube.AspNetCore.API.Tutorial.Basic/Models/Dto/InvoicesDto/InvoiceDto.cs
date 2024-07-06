@@ -1,4 +1,6 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
+﻿using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto;
+using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
 
 namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto
 {
@@ -12,8 +14,8 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoicesDto
         public decimal GrandTotal { get; set; }
 
         public int ClientId { get; set; }
-        public Client Client { get; set; }
+        public ClientDtoForInvoice Client { get; set; }
 
-        public List<InvoiceItem> InvoiceItems { get; set; }
+        public List<InvoiceItemDto> InvoiceItems { get; set; }
     }
 }

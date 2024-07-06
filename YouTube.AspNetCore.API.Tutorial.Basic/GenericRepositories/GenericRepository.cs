@@ -29,7 +29,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.GenericRepositories
 
         public IQueryable<TEntity> GetAll()
         {
-            var items = _dbSet.AsQueryable().AsNoTracking();
+            var items = _dbSet.AsQueryable();
             return items;
         }
 

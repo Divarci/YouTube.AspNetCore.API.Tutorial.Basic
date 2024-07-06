@@ -11,8 +11,5 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto
         public decimal Vat { get; set; }
         public decimal Total { get; set; }
         public decimal GrandTotal { get; set; }
-
-        public int InvoiceId { get; set; }
-        public Invoice Invoice { get; set; }
     }
 }

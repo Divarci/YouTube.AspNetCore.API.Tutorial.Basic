@@ -1,4 +1,5 @@
-﻿using YouTube.AspNetCore.API.Tutorial.Basic.GenericRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using YouTube.AspNetCore.API.Tutorial.Basic.GenericRepositories;
 using YouTube.AspNetCore.API.Tutorial.Basic.MapperApp;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Entities;
@@ -37,14 +38,14 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.ClientServices
 
         public CustomResponseDto<List<ClientDto>> GetAllClientList()
         {
-            var clients = _clientRepository.GetAll().ToList();
+            var clients = _clientRepository.GetAll().AsNoTracking().Include(x=>x.Invoices).ToList();
             var mappedList = _mapper.Map<List<Client>, List<ClientDto>>(clients, 3);
             return CustomResponseDto<List<ClientDto>>.Success(mappedList, 200);
         }
 
         public CustomResponseDto<ClientDto> GetClientById(int id)
         {
-            var client = _clientRepository.GetItemById(id);
+            var client = _clientRepository.GetAll().Include(x => x.Invoices).FirstOrDefault(x=>x.Id==id);
             if (client is null)
             {
                 return CustomResponseDto<ClientDto>.Fail(400, "Client not exist.");
