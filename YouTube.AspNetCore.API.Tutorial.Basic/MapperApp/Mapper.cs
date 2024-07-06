@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using YouTube.AspNetCore.API.Tutorial.Basic.Exceptions;
 
 namespace YouTube.AspNetCore.API.Tutorial.Basic.MapperApp
 {
@@ -9,7 +10,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.MapperApp
 
         public Destination Map<Source, Destination>(Source request, int depth)
         {
-            if (request is null) throw new Exception("Mapper source can not be null");
+            if (request is null) throw new MapperException("Mapper source can not be null");
 
 
             var destination = MapObject(typeof(Source), request, null, typeof(Destination), depth, null);
@@ -18,8 +19,8 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.MapperApp
 
         public Destination Map<Source, Destination>(Source request, Destination outcome, int depth)
         {
-            if (request is null) throw new Exception("Mapper source can not be null");
-            if (outcome is null) throw new Exception("Mapper destination can not be null");
+            if (request is null) throw new MapperException("Mapper source can not be null");
+            if (outcome is null) throw new MapperException("Mapper destination can not be null");
 
             var destination = MapObject(typeof(Source), request, outcome, typeof(Destination), depth, null);
             return (Destination)destination!;
@@ -80,7 +81,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.MapperApp
         private object CollectionMapper(object source, object? outcome, Type destinationType, ref int depth)
         {
             if (source is not IEnumerable sourceList)
-                throw new Exception($"Source object of type is not an IEnumerable");
+                throw new MapperException($"Source object of type is not an IEnumerable");
 
             var destinationObject = Activator.CreateInstance(destinationType);
             var destinationList = (IList)destinationObject!;

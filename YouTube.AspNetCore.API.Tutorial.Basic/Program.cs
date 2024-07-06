@@ -1,5 +1,6 @@
 using YouTube.AspNetCore.API.Tutorial.Basic.Extensions;
 using YouTube.AspNetCore.API.Tutorial.Basic.Filters;
+using YouTube.AspNetCore.API.Tutorial.Basic.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCustomException();
+app.UseCustomStatusCodePages();
 
 app.UseHttpsRedirection();
 
