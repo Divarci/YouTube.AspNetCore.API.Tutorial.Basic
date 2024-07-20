@@ -62,7 +62,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.ClientServices
             {
                 return CustomResponseDto<NoContentDto>.Fail(400, "Client not exist.");
             }
-            var mappedItem = _mapper.Map<ClientUpdateDto, Client>(request, 3);
+            var mappedItem = _mapper.Map(request, client, 3);
             _clientRepository.UpdateItem(mappedItem);
             return CustomResponseDto<NoContentDto>.Success(204);
         }

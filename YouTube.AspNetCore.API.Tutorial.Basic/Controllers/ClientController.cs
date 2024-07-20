@@ -20,7 +20,6 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Controllers
         [HttpGet]
         public IActionResult GetAllClients()
         {
-            throw new Exception("Test");
             var result = _clientService.GetAllClientList();
             return CreateAction(result);
         }
@@ -29,7 +28,6 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Controllers
         [HttpGet("{id}")]
         public IActionResult GetClientById(int id)
         {
-            throw new MapperException("MapperExpTest");
             var result = _clientService.GetClientById(id);
             return CreateAction(result);
         }
