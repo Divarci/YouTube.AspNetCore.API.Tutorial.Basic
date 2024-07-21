@@ -19,6 +19,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Middlewares
                     var statusCode = exceptionFeature.Error switch
                     {
                         MapperException => 400,
+                        ClientSideException => 400,
                         _ => 500
                     };
 

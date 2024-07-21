@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using YouTube.AspNetCore.API.Tutorial.Basic.Exceptions;
 using YouTube.AspNetCore.API.Tutorial.Basic.GenericRepositories;
 using YouTube.AspNetCore.API.Tutorial.Basic.MapperApp;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.ClientsDto.Dto;
@@ -30,7 +31,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.ClientServices
             var client = _clientRepository.GetItemById(id);
             if (client is null)
             {
-                return CustomResponseDto<NoContentDto>.Fail(400, "Client not exist.");
+                throw new ClientSideException("Client not exist");
             }
             _clientRepository.DeleteItem(client);
             return CustomResponseDto<NoContentDto>.Success(204);
@@ -48,7 +49,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.ClientServices
             var client = _clientRepository.GetAll().Include(x => x.Invoices).FirstOrDefault(x=>x.Id==id);
             if (client is null)
             {
-                return CustomResponseDto<ClientDto>.Fail(400, "Client not exist.");
+                throw new ClientSideException("Client not exist");
             }
             var mappedItem = _mapper.Map<Client, ClientDto>(client, 3);
             return CustomResponseDto<ClientDto>.Success(mappedItem, 200);
@@ -60,7 +61,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.ClientServices
             var client = _clientRepository.GetAll().FirstOrDefault(x => x.Id == request.Id);
             if (client is null)
             {
-                return CustomResponseDto<NoContentDto>.Fail(400, "Client not exist.");
+                throw new ClientSideException("Client not exist");
             }
             var mappedItem = _mapper.Map(request, client, 3);
             _clientRepository.UpdateItem(mappedItem);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using YouTube.AspNetCore.API.Tutorial.Basic.Exceptions;
 using YouTube.AspNetCore.API.Tutorial.Basic.GenericRepositories;
 using YouTube.AspNetCore.API.Tutorial.Basic.MapperApp;
 using YouTube.AspNetCore.API.Tutorial.Basic.Models.Dto.InvoiceItemsDto.Dto;
@@ -32,7 +33,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceServices
             var invoice = _invoiceRepository.GetItemById(id);
             if (invoice is null)
             {
-                return CustomResponseDto<NoContentDto>.Fail(400, "Invoice not exist.");
+                throw new ClientSideException("Invoice not exist");
             }
             _invoiceRepository.DeleteItem(invoice);
             return CustomResponseDto<NoContentDto>.Success(204);
@@ -50,7 +51,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceServices
             var invoice = _invoiceRepository.GetAll().Include(x => x.InvoiceItems).Include(x => x.Client).FirstOrDefault(x=>x.Id==id);
             if (invoice is null)
             {
-                return CustomResponseDto<InvoiceDto>.Fail(400, "Invoice not exist.");
+                throw new ClientSideException("Invoice not exist");
             }
             var mappedItem = _mapper.Map<Invoice, InvoiceDto>(invoice, 3);
             return CustomResponseDto<InvoiceDto>.Success(mappedItem, 200);
@@ -62,7 +63,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceServices
             var invoice = _invoiceRepository.GetAll().FirstOrDefault(x => x.Id == request.Id);
             if (invoice is null)
             {
-                return CustomResponseDto<NoContentDto>.Fail(400, "Invoice not exist.");
+                throw new ClientSideException("Client not exist");
             }
             var mappedItem = _mapper.Map(request,invoice ,3);
             _invoiceRepository.UpdateItem(mappedItem);
@@ -78,9 +79,9 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceServices
                 .Include(x=>x.InvoiceItems)
                 .FirstOrDefault(x => x.Id == request.InvoiceId);
 
-            if (invoice is null)            
-                return CustomResponseDto<NoContentDto>.Fail(400, "Invoice not exist."); 
-            
+            if (invoice is null)
+                throw new ClientSideException("Invoice not exist");
+
             var invoiceDto = _mapper.Map<Invoice,InvoiceUpdateForRemoveItemsDto>(invoice, 3);
 
             List<string> errorMessages = new();
@@ -116,7 +117,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceServices
                 .FirstOrDefault(x => x.Id == request.InvoiceId);
 
             if (invoice is null)
-                return CustomResponseDto<List<InvoiceItemCreateDto>>.Fail(400, "Invoice not exist.");
+                throw new ClientSideException("Invoice not exist");
 
             var invoiceDto = _mapper.Map<Invoice, InvoiceUpdateForAddItemsDto>(invoice, 3);
             invoiceDto.InvoiceItems!.AddRange(request.InvoiceItemList);            
