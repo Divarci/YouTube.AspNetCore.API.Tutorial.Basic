@@ -60,7 +60,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Services.InvoiceServices
 
         public CustomResponseDto<NoContentDto> UpdateInvoice(InvoiceUpdateForRemoveItemsDto request)
         {
-            var invoice = _invoiceRepository.GetAll().FirstOrDefault(x => x.Id == request.Id);
+            var invoice = _invoiceRepository.GetAll().Include(x=>x.InvoiceItems).FirstOrDefault(x => x.Id == request.Id);
             if (invoice is null)
             {
                 throw new ClientSideException("Client not exist");
