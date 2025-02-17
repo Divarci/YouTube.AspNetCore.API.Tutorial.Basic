@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  youtube.aspnetcore.api.tutorial.basic:
+    image: ${DOCKER_REGISTRY-}youtubeaspnetcoreapitutorialbasic
+    container_name: React-Api
+    build:
+      context: .
+      dockerfile: YouTube.AspNetCore.API.Tutorial.Basic/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__SqlConnection=Server=react.sql;Database=ReactProject;User Id=sa;Password=Password12**;TrustServerCertificate=True;
+    depends_on:
+      - react.sql
+    networks:
+      - react-network 
+    ports:
+      - 5002:8081
+ 
+  react.sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: React-Sql
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password12**
+    ports:
+      - "1434:1433"
+    volumes:
+      - mssql-reactdata:/var/opt/mssql 
+    networks:
+      - react-network 
+
+volumes:
+  mssql-reactdata:
+    
+networks:
+  react-network:
+    driver: bridge    
