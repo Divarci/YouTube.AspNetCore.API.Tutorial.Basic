@@ -5,7 +5,14 @@ using YouTube.AspNetCore.API.Tutorial.Basic.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost",
+        builder => builder
+            .WithOrigins("http://localhost:60813")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 builder.Services.AddControllers(opt=>
 {
     opt.Filters.Add(new ValidationFilterAttribute());
@@ -29,7 +36,7 @@ app.UseCustomException();
 app.UseCustomStatusCodePages();
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowLocalhost"); 
 app.UseAuthorization();
 
 app.MapControllers();
